@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Complete Resume Assignment</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .assignment-header {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .resume-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .resume-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .resume-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .resume-header {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .resume-content {
+            padding: 20px;
+            height: 400px;
+            overflow-y: auto;
+        }
+
+        /* Part A: Basic Resume Styles */
+        .basic-resume {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+        }
+
+        .basic-resume h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .basic-resume h2 {
+            color: #34495e;
+            text-decoration: underline;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .basic-resume p,
+        .basic-resume ul {
+            margin-bottom: 15px;
+        }
+
+        .basic-resume ul {
+            padding-left: 20px;
+        }
+
+        /* Part B: Two Column Layout */
+        .two-column {
+            display: flex;
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            min-height: 500px;
+        }
+
+        .left-column {
+            flex: 1;
+            background: #34495e;
+            color: white;
+            padding: 30px 20px;
+        }
+
+        .right-column {
+            flex: 2;
+            padding: 30px;
+        }
+
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #3498db;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: white;
+        }
+
+        .left-column h3 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .skill-item {
+            padding: 5px 10px;
+            margin: 5px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: #3498db;
+            transform: scale(1.05);
+        }
+
+        /* Card Layout with Flexbox */
+        .card-layout {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+            background: #ecf0f1;
+            justify-content: center;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 250px;
+            max-width: 300px;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .info-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        /* Part C: Advanced Layouts */
+        .developer-resume {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .dev-sidebar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+        }
+
+        .dev-main {
+            padding: 40px;
+        }
+
+        .contact-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: #3498db;
+            border-radius: 50%;
+            margin-right: 10px;
+            text-align: center;
+            line-height: 20px;
+            font-size: 12px;
+        }
+
+        /* Academic CV */
+        .academic-cv {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .academic-cv h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .academic-cv h2 {
+            color: #34495e;
+            border-bottom: 1px solid #bdc3c7;
+            padding-bottom: 5px;
+            margin: 25px 0 15px 0;
+        }
+
+        /* CSS-only navigation using radio buttons and labels */
+        .nav-buttons {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .nav-radio {
+            display: none;
+        }
+
+        .nav-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: inline-block;
+        }
+
+        .nav-btn:hover {
+            background: #2980b9;
+        }
+
+        /* Hide all sections by default */
+        .section {
+            display: none;
+        }
+
+        /* Show sections based on checked radio button */
+        #radio-part-a:checked~.container #part-a,
+        #radio-part-b:checked~.container #part-b,
+        #radio-part-c:checked~.container #part-c {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Radio buttons for navigation (hidden) -->
+    <input type="radio" name="nav" id="radio-part-a" class="nav-radio" checked>
+    <input type="radio" name="nav" id="radio-part-b" class="nav-radio">
+    <input type="radio" name="nav" id="radio-part-c" class="nav-radio">
+
+    <div class="container">
+        <div class="assignment-header">
+            <h1>Resume</h1>
+        </div>
+
+        <div class="nav-buttons">
+            <label for="radio-part-a" class="nav-btn">Part A: Basics</label>
+            <label for="radio-part-b" class="nav-btn">Part B: Intermediate</label>
+            <label for="radio-part-c" class="nav-btn">Part C: Advanced</label>
+        </div>
+
+        <!-- Part A: Basics -->
+        <div id="part-a" class="section">
+            <div class="resume-grid">
+                <div class="resume-card">
+                    <div class="resume-header">
+                        <h3>Basic Academic Resume </h3>
+                    </div>
+                    <div class="resume-content">
+                        <div class="basic-resume">
+                            <h2>Personal Details</h2>
+                            <p><strong>Name:</strong>Shreyas Gowda A<br>
+                                <strong>Phone:</strong>+91 8296140979<br>
+                                <strong>City:</strong>Bengaluru
+
+                            </p>
+                            <h2>Education</h2>
+                            <p><strong>Bachelor of Technology</strong><br>
+                                Dayananda Sagar University (2024-2028)<br>
+                                CGPA: 8.43/10.0</p>
+
+                            <h2>Skills</h2>
+                            <ul>
+                                <li>HTML, CSS, JavaScript</li>
+                                <li>Python, Java</li>
+                                <li>Database Management</li>
+                                <li>Version Control (Git)</li>
+                            </ul>
+
+                            <h2>Projects</h2>
+                            <ul>
+                                <li>E-commerce Website - Built responsive online store</li>
+                                <li>Task Manager App - React-based productivity tool</li>
+                            </ul>
+                            <h2>Contact Information</h2>
+                            <p><strong>Email:</strong>shreyasgowdaa2006@gmail.com<br>
+                                <strong>LinkedIn
+                                    ID:</strong>linkedin.com/in/shreyas-gowda-a
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resume-card">
+                    <div class="resume-header">
+                        <h3>HTML-Only Resume</h3>
+                    </div>
+                    <div class="resume-content">
+                        <div class="html-only">
+                            <header>
+                                <h1>Shreyas Gowda A</h1>
+                                <p>Web Developer | shreyasgowdaa2006@gmail.com | +91 8296140979</p>
+                            </header>
+
+                            <section>
+                                <h2>Education</h2>
+                                <article>
+                                    <strong>Bachelor of Technology</strong>
+                                    <p> Dayananda Sagar University (2024-2028)<br>
+                                        CGPA: 8.43/10.0</p>
+                                </article>
+                            </section>
+
+                            <section>
+                                <h2>Skills</h2>
+                                <article>
+                                    <ul>
+                                        <li>HTML, CSS, JavaScript</li>
+                                        <li>Python, Java</li>
+                                        <li>Database Management</li>
+                                        <li>Version Control (Git)</li>
+                                    </ul>
+                                </article>
+                            </section>
+
+                            <section>
+                                <h2>Projects</h2>
+                                <article>
+                                    <ul>
+                                        <li>E-commerce Website - Built responsive online store</li>
+                                        <li>Task Manager App - React-based productivity tool</li>
+                                    </ul>
+                                    <h2>Contact Information</h2>
+                                    <p><strong>Email:</strong>shreyasgowdaa2006@gmail.com<br>
+                                        <strong>LinkedIn
+                                            ID:</strong>linkedin.com/in/shreyas-gowda-a
+                                </article>
+                            </section>
+
+                            <footer>
+                                <p>References available upon request</p>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Part B: Intermediate -->
+        <div id="part-b" class="section">
+            <div class="resume-grid">
+                <div class="resume-card">
+                    <div class="resume-header">
+                        <h3>Two-Column Layout</h3>
+                    </div>
+                    <div class="resume-content">
+                        <div class="two-column">
+                            <div class="left-column">
+                                <div class="profile-photo">SG</div>
+                                <h3>Contact</h3>
+                                <p>shreyasgowdaa2006@gmail.com<br>+91 8296140979<br>linkedin.com/in/shreyas-gowda-a</p>
+
+                                <h3>Skills</h3>
+                                <div class="skill-item">JavaScript</div>
+                                <div class="skill-item">React</div>
+                                <div class="skill-item">Node.js</div>
+                                <div class="skill-item">CSS</div>
+                            </div>
+                            <div class="right-column">
+                                <h1>Shreyas Gowda A</h1>
+                                <h2>Full Stack Developer</h2>
+
+                                <h3>Education</h3>
+                                <p><strong>Bachelor of Technology</strong><br>Dayananda Sagar University (2024-2028)</p>
+
+                                <h2>Projects</h2>
+                                <ul>
+                                    <li>E-commerce Website - Built responsive online store</li>
+                                    <li>Task Manager App - React-based productivity tool</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resume-card">
+                        <div class="resume-header">
+                            <h3>Card Layout Style</h3>
+                        </div>
+                        <div class="resume-content">
+                            <div class="card-layout">
+                                <div class="info-card">
+                                    <h3>Education</h3>
+                                    <p><strong>Bachelor of Technology</strong></p>
+                                    <p>Dayananda Sagar University</p>
+                                    <p>2024-2028</p>
+                                    <p>CGPA: 8.43/10.0</p>
+                                </div>
+
+                                <div class="info-card">
+                                    <h3>Projects</h3>
+                                    <ul>
+                                        <li>E-commerce Website - Built responsive online store</li>
+                                        <li>Task Manager App - React-based productivity tool</li>
+                                    </ul>
+                                </div>
+
+                                <div class="info-card">
+                                    <h3>Skills</h3>
+                                    <div class="skill-item">JavaScript</div>
+                                    <div class="skill-item">React</div>
+                                    <div class="skill-item">Node.js</div>
+                                    <div class="skill-item">CSS</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Part C: Advanced -->
+        <div id="part-c" class="section">
+            <div class="resume-grid">
+                <div class="resume-card">
+                    <div class="resume-header">
+                        <h3>Creative Web Developer Resume</h3>
+                    </div>
+                    <div class="resume-content">
+                        <div class="developer-resume">
+                            <div class="dev-sidebar">
+                                <h2>Shreyas Gowda A</h2>
+                                <p>Full Stack Web Developer</p>
+
+                                <h3>Contact</h3>
+                                <p><span class="contact-icon">📧</span>shreyasgowdaa2006@gmail.com</p>
+                                <p><span class="contact-icon">📱</span>+91 8296140979</p>
+                                <p><span class="contact-icon">💼</span>linkedin.com/in/shreyas-gowda-a</p>
+
+                                <h3>Skills</h3>
+                                <div class="skill-item">JavaScript</div>
+                                <div class="skill-item">React</div>
+                                <div class="skill-item">Node.js</div>
+                                <div class="skill-item">CSS</div>
+                            </div>
+                            <div class="dev-main">
+                                <h2>Education</h2>
+                                <p><strong>Bachelor of Technology</strong><br>
+                                    Dayananda Sagar University (2024-2028)<br>
+                                    CGPA: 8.43/10.0</p>
+
+                                <h3>Projects</h3>
+                                <ul>
+                                    <li>E-commerce Website - Built responsive online store</li>
+                                    <li>Task Manager App - React-based productivity tool</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume-card">
+                <div class="resume-header">
+                    <h3>Academic CV Format</h3>
+                </div>
+                <div class="resume-content">
+                    <div class="academic-cv">
+                        <h1>Shreyas Gowda A</h1>
+                        <p style="text-align: center;">Web Developer</p>
+
+                        <h2>Education</h2>
+                        <p><strong>Bachelor of Technology</strong><br>
+                            Dayananda Sagar University (2024-2028)<br>
+                            <strong>CGPA:</strong> 8.43/10.0
+                        </p>
+
+                        <h2>Skills</h2>
+                        <ul>
+                            <li>HTML, CSS, JavaScript</li>
+                            <li>Python, Java</li>
+                            <li>Database Management</li>
+                            <li>Version Control (Git)</li>
+                        </ul>
+
+                        <h2>Projects</h2>
+                        <ul>
+                            <li>E-commerce Website - Built responsive online store</li>
+                            <li>Task Manager App - React-based productivity tool</li>
+                        </ul>
+
+                        <h2>Contact Information</h2>
+                        <p><strong>Email:</strong>shreyasgowdaa2006@gmail.com<br>
+                            <strong>LinkedIn
+                                ID:</strong>linkedin.com/in/shreyas-gowda-a
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
